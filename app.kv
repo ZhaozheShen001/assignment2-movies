@@ -1,0 +1,88 @@
+# TODO: Create your Kivy layout in the kv language here
+BoxLayout:
+    orientation: 'vertical'
+    # head
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: 0.1
+        Label:
+            size_hint_x: 0.3
+            text: app.head_left
+        Label:
+            size_hint_x: 0.7
+            text: app.head_right
+    # body
+    BoxLayout:
+        orientation: 'horizontal'
+        # left side
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_x: 0.3
+            Spinner:
+                size_hint_y: 0.1
+                id: state_selection
+                text: app.key
+                values: app.state_codes
+                # on_text is the event (not on_release) when the text updates (spinner option is selected)
+                # note that on_text runs even when the text is set for the very first time
+                on_text: app.change_state(self.text)
+            Label:
+                size_hint_y: 0.1
+                text: app.content_add
+            BoxLayout:
+                # layout for input fields and action buttons
+                id: inputs
+                orientation: 'vertical'
+                Label:
+                    text: 'Title: '
+                    size_hint_y: None
+                    height: '48dp'
+                TextInput:
+                    id: added_title
+                    value: ''
+                    size_hint_y: None
+                    height: '48dp'
+                    # the next two lines make it so that pressing Tab moves the cursor
+                    # to the next input field instead of entering the Tab character
+                    multiline: False
+                    write_tab: False
+                Label:
+                    text: 'Category: '
+                    size_hint_y: None
+                    height: '48dp'
+                TextInput:
+                    id: added_category
+                    value: ''
+                    size_hint_y: None
+                    height: '48dp'
+                    multiline: False
+                    write_tab: False
+                Label:
+                    text: 'Year: '
+                    size_hint_y: None
+                    height: '48dp'
+                TextInput:
+                    id: added_year
+                    value: ''
+                    size_hint_y: None
+                    height: '48dp'
+                    multiline: False
+                    write_tab: False
+                Button:
+                    text: 'Add Movie'
+                    on_release: app.press_add(added_title.text, added_category.text, added_year.text)
+                Button:
+                    text: 'Clear'
+                    on_release: app.clear_fields()
+        # right side
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_x: 0.7
+            BoxLayout:
+                orientation: 'vertical'
+                # this layout is populated with Button widgets in app code
+                id: entries_box
+            Label:
+                size_hint_y: 0.1
+                text: app.status_text
+        
