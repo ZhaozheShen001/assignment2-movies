@@ -1,7 +1,7 @@
 """
 Name: Shen Zhaozhe
 Date:23/01/2021
-GitHub URL:
+GitHub URL:https://github.com/JCUS-CP1404/assignment-2---movies-2-ZhaozheShen001
 """
 # TODO: Create your main program in this file, using the MoviesToWatchApp class
 
